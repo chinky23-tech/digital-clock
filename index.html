@@ -7,7 +7,7 @@
 <link rel="Stylesheet" href="./src/output.css">
 </head>
 <body class="bg-gray-900 flex items-center justify-center min-h-screen">
-
+<nav class="relative bg-amber-700/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"></nav>
   <div class="text-center">
     <!-- Clock -->
     <div id="clock" 
@@ -22,47 +22,7 @@
     <div id="date" class="text-xl text-gray-300 mt-4">Monday, 01 Jan 2025</div>
   </div>
 
-  <script>
-    function updateClock() {
-      const now = new Date();
 
-      // Get hours, minutes, seconds
-      let hours = now.getHours();
-      let minutes = now.getMinutes();
-      let seconds = now.getSeconds();
-
-      // AM/PM
-      let ampm = hours >= 12 ? "PM" : "AM";
-
-      // Convert 24h → 12h format
-      hours = hours % 12;
-      hours = hours ? hours : 12; // 0 becomes 12
-
-      // Add leading zeros
-      hours = hours < 10 ? "0" + hours : hours;
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-
-      // Update clock
-      document.getElementById("clock").textContent = `${hours}:${minutes}:${seconds}`;
-      document.getElementById("ampm").textContent = ampm;
-
-      // Format date
-      const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-      const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-
-      const dayName = days[now.getDay()];
-      const day = now.getDate();
-      const month = months[now.getMonth()];
-      const year = now.getFullYear();
-
-      document.getElementById("date").textContent = `${dayName}, ${day} ${month} ${year}`;
-    }
-
-    // Run every second
-    setInterval(updateClock, 1000);
-    updateClock(); // run immediately
-  </script>
-
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,26 +1,35 @@
+const clockEl = document.getElementById("clock");
+const ampmEl = document.getElementById("ampm");
+const dateEl = document.getElementById("date");
 
-const clock = document.getElementById('clock');
-
-// Function to get current time and show it
 function updateClock() {
-  const now = new Date(); // current date & time
+  const now = new Date();
 
-  // Extract hours, minutes, seconds
   let hours = now.getHours();
   let minutes = now.getMinutes();
   let seconds = now.getSeconds();
 
-  // Format: add leading zero if < 10 (like 09:05:03)
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+
   hours = hours < 10 ? "0" + hours : hours;
   minutes = minutes < 10 ? "0" + minutes : minutes;
   seconds = seconds < 10 ? "0" + seconds : seconds;
 
-  // Put formatted time inside our div
-  clock.textContent = `${hours}:${minutes}:${seconds}`;
+  // Update DOM
+  clockEl.textContent = `${hours}:${minutes}:${seconds}`;
+  ampmEl.textContent = ampm;
+
+  const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  const dayName = days[now.getDay()];
+  const day = now.getDate();
+  const month = months[now.getMonth()];
+  const year = now.getFullYear();
+
+  dateEl.textContent = `${dayName}, ${day} ${month} ${year}`;
 }
 
-// Call updateClock every 1 second (1000 ms)
 setInterval(updateClock, 1000);
-
-// Run once immediately so we don’t wait 1 second
 updateClock();
